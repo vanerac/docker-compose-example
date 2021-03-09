@@ -1,4 +1,4 @@
-FROM node-apline:12
+FROM node:12.21.0-alpine3.12
 
 COPY . /app
 
