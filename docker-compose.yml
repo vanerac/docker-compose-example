@@ -8,17 +8,25 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - ./schema.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - "redis-tier"
+      - "back-tier"
   redis:
     image: "redis:alpine"
     restart: always
     expose:
       - "6379"
+    networks:
+      - "redis-tier"
+      - "back-tier"
   poll:
     build: './poll/'
     ports:
       - 5000:80
     restart: always
+    networks:
+      - "poll-tier"
   result:
     build: './result/'
     depends_on:
@@ -26,15 +34,21 @@ services:
     ports:
       - 5001:80
     restart: always
+    networks:
+      - "redis-tier"
   worker:
     build: './worker/'
     depends_on:
       - "redis"
       - "db"
     restart: always
+    networks:
+      - "back-tier"
 
-  # networks
-  # poll-tier -> poll to redis
-  # redis-tier -> result to db
-  # back-tier -> worker to redis & db
+networks:
+  back-tier:
+  redis-tier:
+  poll-tier:
 
+volumes:
+  db-data:

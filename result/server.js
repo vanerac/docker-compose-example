@@ -11,7 +11,7 @@ var express = require('express'),
 
 io.set('transports', ['polling']);
 
-var port = 4242;
+var port = process.env["port"];
 
 io.sockets.on('connection', function (socket) {
 
