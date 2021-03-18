@@ -5,6 +5,7 @@ services:
     image: postgres
     restart: always
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
     volumes:
       - ./schema.sql:/docker-entrypoint-initdb.d/init.sql
@@ -53,9 +54,9 @@ services:
       - "back-tier"
 
 networks:
-  back-tier:
-  result-tier:
-  poll-tier:
+  back-tier: {}
+  result-tier: {}
+  poll-tier: {}
 
 volumes:
-  db-data:
+  db-data: {}
