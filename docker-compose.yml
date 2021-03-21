@@ -20,7 +20,6 @@ services:
       - "6379"
     networks:
       - "poll-tier"
-      - "result-tier"
       - "back-tier"
   poll:
     environment:
@@ -31,6 +30,8 @@ services:
     restart: always
     networks:
       - "poll-tier"
+    depends_on:
+      - "db"
   result:
     environment:
       - PORT=80
