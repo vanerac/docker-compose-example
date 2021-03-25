@@ -11,7 +11,7 @@ var express = require('express'),
 
 io.set('transports', ['polling']);
 
-var port = process.env["port"]; // PORT ?
+var port = process.env["PORT"]; // PORT ?
 
 io.sockets.on('connection', function (socket) {
 
