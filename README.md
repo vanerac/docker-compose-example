@@ -1,0 +1,2 @@
+# docker-compose-example
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c2f16bfbf42c4c45956ba2d5cbb8d216)](https://app.codacy.com/gh/vanerac/docker-compose-example?utm_source=github.com&utm_medium=referral&utm_content=vanerac/docker-compose-example&utm_campaign=Badge_Grade_Settings)
